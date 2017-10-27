@@ -174,7 +174,7 @@ services:
       - NSIP=${NSIP1}
       - USERNAME=${USERNAME}
       - PASSWORD=${PASSWORD}
-      - VSERVER=${SSL_APP1_NS_1}
+      - VSERVER=${SSL_APP1_NS1}
     restart: always
     logging:
       driver: json-file
@@ -191,7 +191,7 @@ services:
       - NSIP=${NSIP1}
       - USERNAME=${USERNAME}
       - PASSWORD=${PASSWORD}
-      - VSERVER=${SSL_APP2_NS_1}
+      - VSERVER=${SSL_APP2_NS1}
     restart: always
     logging:
       driver: json-file
@@ -208,7 +208,7 @@ services:
       - NSIP=${NSIP2}
       - USERNAME=${USERNAME}
       - PASSWORD=${PASSWORD}
-      - VSERVER=${SSL_APP1_NS_2}
+      - VSERVER=${SSL_APP1_NS2}
     restart: always
     logging:
       driver: json-file
@@ -225,7 +225,7 @@ services:
       - NSIP=${NSIP2}
       - USERNAME=${USERNAME}
       - PASSWORD=${PASSWORD}
-      - VSERVER=${SSL_APP2_NS_2}
+      - VSERVER=${SSL_APP2_NS2}
     restart: always
     logging:
       driver: json-file
