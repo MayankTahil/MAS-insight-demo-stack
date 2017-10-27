@@ -1,0 +1,387 @@
+---
+version: "2"
+services:
+  # BULK SERVERS
+  bulk-server-1:
+    image: "mayankt/bulk-server"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${BULK_SERVER_1}
+    hostname: bulk-server-1
+  bulk-server-2:
+    image: "mayankt/bulk-server"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${BULK_SERVER_2}
+    hostname: bulk-server-2
+  bulk-server-3:
+    image: "mayankt/bulk-server"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      DC:
+        ipv4_address: ${BULK_SERVER_3}
+    hostname: bulk-server-3
+  bulk-server-4:
+    image: "mayankt/bulk-server"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      DC:
+        ipv4_address: ${BULK_SERVER_4}
+    hostname: bulk-server-4
+
+  # WEB SERVERS
+  webapp-1:
+    image: "registry.americasreadiness.com:5000/webapp"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${WEBAPP_1}
+    hostname: webapp-1
+  webapp-2:
+    image: "registry.americasreadiness.com:5000/webapp"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${WEBAPP_2}
+    hostname: webapp-2
+  webapp-3:
+    image: "registry.americasreadiness.com:5000/webapp"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${WEBAPP_3}
+    hostname: webapp-3
+  webapp-4:
+    image: "registry.americasreadiness.com:5000/webapp"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+        ipv4_address: ${WEBAPP_4}
+    hostname: webapp-4
+
+  #CRAWLERS
+  crawler-1:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_1}
+    hostname: crawler-1
+  crawler-2:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_2}
+    hostname: crawler-2
+  crawler-3:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_3}
+    hostname: crawler-3
+  crawler-4:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_4}
+    hostname: crawler-4
+  
+  #SSL INSIGHT
+  ssl-insight-1:
+    image: registry.americasreadiness.com:5000/ssl-insight
+    environment:
+      - NSIP=${NSIP1}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VSERVER=${SSL_APP1_NS_1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${SSL_INSIGHT_1}
+    hostname: ssl-insight-1
+  ssl-insight-2:
+    image: registry.americasreadiness.com:5000/ssl-insight
+    environment:
+      - NSIP=${NSIP1}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VSERVER=${SSL_APP2_NS_1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${SSL_INSIGHT_2}
+    hostname: ssl-insight-2
+  ssl-insight-3:
+    image: registry.americasreadiness.com:5000/ssl-insight
+    environment:
+      - NSIP=${NSIP2}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VSERVER=${SSL_APP1_NS_2}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${SSL_INSIGHT_3}
+    hostname: ssl-insight-3
+  ssl-insight-4:
+    image: registry.americasreadiness.com:5000/ssl-insight
+    environment:
+      - NSIP=${NSIP2}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VSERVER=${SSL_APP2_NS_2}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${SSL_INSIGHT_4}
+    hostname: ssl-insight-4
+
+  #SECURITY INSIGHT
+  security-insight-1:
+    image: registry.americasreadiness.com:5000/security-insight
+    environment:
+      - MAS=${MAS}
+      - VIP=${HTTP_VIP1_NS1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS :
+        ipv4_address: ${SECURITY_INSIGHT_1}
+    hostname: security-insight-1
+  security-insight-2:
+    image: registry.americasreadiness.com:5000/security-insight
+    environment:
+      - MAS=${MAS}
+      - VIP=${HTTP_VIP2_NS1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS :
+        ipv4_address: ${SECURITY_INSIGHT_2}
+    hostname: security-insight-2
+  security-insight-3:
+    image: registry.americasreadiness.com:5000/security-insight
+    environment:
+      - MAS=${MAS}
+      - VIP=${HTTP_VIP1_NS2}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS :
+        ipv4_address: ${SECURITY_INSIGHT_3}
+    hostname: security-insight-3
+  security-insight-4:
+    image: registry.americasreadiness.com:5000/security-insight
+    environment:
+      - MAS=${MAS}
+      - VIP=${HTTP_VIP2_NS2}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS :
+        ipv4_address: ${SECURITY_INSIGHT_4}
+    hostname: security-insight-4
+
+  #GATEWAY INSIGHT
+  gateway-insight-1:
+    image: registry.americasreadiness.com:5000/gateway-insight:v2
+    environment:
+      - MAS=${MAS}
+      - SRCIP=${NSIP2}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${GATEWAY_INSIGHT_1}
+    hostname: gw-insight-1
+
+  #HDX INSIGHT
+  hdx-insight-1:
+    image: registry.americasreadiness.com:5000/hdx-insight
+    volumes:
+      - "${HDX_USECASES}:/usecases:ro"
+    environment:
+      - MAS=${MAS}
+      - FILES=/usecases/gw1
+      - SRC_IP=${NSIP1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${HDX_INSIGHT_1}
+    hostname: hdx-insight-1
+  hdx-insight-2:
+    image: registry.americasreadiness.com:5000/hdx-insight
+    volumes:
+      - "${HDX_USECASES}:/usecases:ro"
+    environment:
+      - MAS=${MAS}
+      - FILES=/usecases/gw2
+      - SRC_IP=${NSIP1}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS :
+        ipv4_address: ${HDX_INSIGHT_2}
+    hostname: hdx-insight-1
+
+networks:
+  # define a host-external network 
+  SNIPS:
+    driver: macvlan
+    driver_opts:
+      parent: ${SNIP_ETH}
+    ipam:
+      config:
+        - subnet: ${SNIP_NTW}
+          gateway: ${SNIP_GW}
+          ip_range: ${SNIP_RANGE} # IP from this pool are assigned automatically if no IP is specified
+  VIPS:
+    driver: macvlan
+    driver_opts:
+      parent: ${VIPS_ETH}
+    ipam:
+      config:
+        - subnet: ${VIPS_NTW}
+          gateway: ${VIPS_GW}
+          ip_range: ${VIPS_RANGE} # IP from this pool are assigned automatically if no IP is specified
+  DC:
+    driver: macvlan
+    driver_opts:
+      parent: ${DC_ETH}
+    ipam:
+      config:
+        - subnet: ${DC_NTW}
+          gateway: ${DC_GW}
+          ip_range: ${DC_RANGE} # IP from this pool are assigned automatically if no IP is specified
+  
+
