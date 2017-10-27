@@ -15,8 +15,12 @@ sleep 5
 
 docker-compose -f ns-init.yaml up -d
 
-sleep 45
+sleep 65
 
-# Restart the stack
+# Clean up any mess
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+
+# Ensure Desired state of NS ADC configs, then restart the stack
 source ~/.bashrc
+docker-compose -f ns-init.yaml up -d
 docker-compose -f mas-insight-stack.yaml up -d

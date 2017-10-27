@@ -166,7 +166,71 @@ services:
       VIPS:
         ipv4_address: ${CRAWLER_4}
     hostname: crawler-4
-  
+  crawler-5:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_5}
+    hostname: crawler-5
+  crawler-6:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_6}
+    hostname: crawler-6
+  crawler-7:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_7}
+    hostname: crawler-7
+  crawler-8:
+    image: registry.americasreadiness.com:5000/vip-crawler
+    volumes:
+      - "${VIP_INPUT}:/var/vip-input/vips.csv:ro"
+    environment:
+      - FILE=vips.csv
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      VIPS:
+        ipv4_address: ${CRAWLER_8}
+    hostname: crawler-8
+    
   #SSL INSIGHT
   ssl-insight-1:
     image: registry.americasreadiness.com:5000/ssl-insight
