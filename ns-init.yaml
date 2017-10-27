@@ -124,7 +124,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${BULK_SERVER_1}
-      - SERVICE1=srvc_backend-http-webapp-1
+      - SERVICE1=srvc_backend-http-bulk-1
     logging:
       driver: json-file
       options:
@@ -150,7 +150,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${BULK_SERVER_2}
-      - SERVICE1=srvc_backend-http-webapp-2
+      - SERVICE1=srvc_backend-http-bulk-2
     logging:
       driver: json-file
       options:
@@ -176,7 +176,7 @@ services:
       - HOSTNAME=${NS2}
       - DNS=${DNS}
       - DOCKERHOST=${BULK_SERVER_3}
-      - SERVICE1=srvc_backend-http-webapp-3
+      - SERVICE1=srvc_backend-http-bulk-3
     logging:
       driver: json-file
       options:
@@ -202,7 +202,7 @@ services:
       - HOSTNAME=${NS2}
       - DNS=${DNS}
       - DOCKERHOST=${BULK_SERVER_4}
-      - SERVICE1=srvc_backend-http-webapp-4
+      - SERVICE1=srvc_backend-http-bulk-4
     logging:
       driver: json-file
       options:
