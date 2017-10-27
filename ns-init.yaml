@@ -23,6 +23,8 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    networks:
+      SNIPS:
     hostname: ns-init-1
   
   ns-init-2:
@@ -47,6 +49,8 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    networks:
+      SNIPS:
     hostname: ns-init-2
 
   ns-init-3:
@@ -71,6 +75,8 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    networks:
+      SNIPS:
     hostname: ns-init-3
 
   ns-init-4:
@@ -95,4 +101,18 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    networks:
+      SNIPS:
     hostname: ns-init-4
+
+networks:
+  # define a host-external network 
+  SNIPS:
+    driver: macvlan
+    driver_opts:
+      parent: ${SNIP_ETH}
+    ipam:
+      config:
+        - subnet: ${SNIP_NTW}
+          gateway: ${SNIP_GW}
+          ip_range: ${SNIP_RANGE} # IP from this pool are assigned automatically if no IP is specified
