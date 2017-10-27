@@ -1,6 +1,6 @@
 version: "2"
 services:
-  # BULK SERVERS
+  # WEBAPP SERVERS
   ns-init-1:
     image: "registry.americasreadiness.com:5000/ns-init"
     environment:
@@ -104,6 +104,113 @@ services:
     networks:
       SNIPS:
     hostname: ns-init-4
+
+
+## BULK SERVER BACKEND SERVICE ON VSERVERS
+
+  ns-init-5:
+    image: "registry.americasreadiness.com:5000/ns-init"
+    environment:
+      - NSIP=${NSIP1}
+      - SNIP=${SNIP1}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VIP1=${SSL_VIP1_NS1}
+      - VIP2=${HTTP_VIP1_NS1}
+      - VIP3=${HTTP_VIP2_NS1}
+      - VSERVER=${SSL_APP1_NS1}
+      - VSERVER1=${HTTP_APP1_NS1}
+      - VSERVER2=${HTTP_APP2_NS1}
+      - HOSTNAME=${NS1}
+      - DNS=${DNS}
+      - DOCKERHOST=${BULK_SERVER_1}
+      - SERVICE1=srvc_backend-http-webapp-1
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+    hostname: ns-init-5
+  
+  ns-init-6:
+    image: "registry.americasreadiness.com:5000/ns-init"
+    environment:
+      - NSIP=${NSIP1}
+      - SNIP=${SNIP1}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VIP1=${SSL_VIP2_NS1}
+      - VIP2=${HTTP_VIP3_NS1}
+      - VIP3=${HTTP_VIP4_NS1}
+      - VSERVER=${SSL_APP2_NS1}
+      - VSERVER1=${HTTP_APP3_NS1}
+      - VSERVER2=${HTTP_APP4_NS1}
+      - HOSTNAME=${NS1}
+      - DNS=${DNS}
+      - DOCKERHOST=${BULK_SERVER_2}
+      - SERVICE1=srvc_backend-http-webapp-2
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+    hostname: ns-init-6
+
+  ns-init-7:
+    image: "registry.americasreadiness.com:5000/ns-init"
+    environment:
+      - NSIP=${NSIP2}
+      - SNIP=${SNIP2}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VIP1=${SSL_VIP1_NS2}
+      - VIP2=${HTTP_VIP1_NS2}
+      - VIP3=${HTTP_VIP2_NS2}
+      - VSERVER=${SSL_APP1_NS2}
+      - VSERVER1=${HTTP_APP1_NS2}
+      - VSERVER2=${HTTP_APP2_NS2}
+      - HOSTNAME=${NS2}
+      - DNS=${DNS}
+      - DOCKERHOST=${BULK_SERVER_3}
+      - SERVICE1=srvc_backend-http-webapp-3
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+    hostname: ns-init-7
+
+  ns-init-8:
+    image: "registry.americasreadiness.com:5000/ns-init"
+    environment:
+      - NSIP=${NSIP2}
+      - SNIP=${SNIP2}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - VIP1=${SSL_VIP2_NS2}
+      - VIP2=${HTTP_VIP3_NS2}
+      - VIP3=${HTTP_VIP4_NS2}
+      - VSERVER=${SSL_APP2_NS2}
+      - VSERVER1=${HTTP_APP3_NS2}
+      - VSERVER2=${HTTP_APP4_NS2}
+      - HOSTNAME=${NS2}
+      - DNS=${DNS}
+      - DOCKERHOST=${BULK_SERVER_4}
+      - SERVICE1=srvc_backend-http-webapp-4
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      SNIPS:
+    hostname: ns-init-8
 
 networks:
   # define a host-external network 
