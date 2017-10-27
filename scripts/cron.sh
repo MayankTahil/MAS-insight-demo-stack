@@ -3,7 +3,7 @@
 cd /MASaaS
 
 # Tear down the stack
-docker-compose -f mas-insight.stack.yaml down 
+docker-compose -f mas-insight-stack.yaml down 
 
 # Update code from repository and update images
 git pull 
