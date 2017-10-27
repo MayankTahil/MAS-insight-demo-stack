@@ -17,7 +17,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_1}
-      - SERVICE1="srvc_backend-http-webapp-1"
+      - SERVICE1=srvc_backend-http-webapp-1
     logging:
       driver: json-file
       options:
@@ -43,7 +43,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_2}
-      - SERVICE1="srvc_backend-http-webapp-2"
+      - SERVICE1=srvc_backend-http-webapp-2
     logging:
       driver: json-file
       options:
@@ -69,7 +69,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_3}
-      - SERVICE1="srvc_backend-http-webapp-3"
+      - SERVICE1=srvc_backend-http-webapp-3
     logging:
       driver: json-file
       options:
@@ -95,7 +95,7 @@ services:
       - HOSTNAME=${NS1}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_4}
-      - SERVICE1="srvc_backend-http-webapp-4"
+      - SERVICE1=srvc_backend-http-webapp-4
     logging:
       driver: json-file
       options:
