@@ -3,7 +3,6 @@ services:
   # BULK SERVERS
   ns-init-1:
     image: "registry.americasreadiness.com:5000/ns-init"
-    restart: never
     environment:
       - NSIP=${NSIP1}
       - SNIP=${SNIP1}
@@ -28,7 +27,6 @@ services:
   
   ns-init-2:
     image: "registry.americasreadiness.com:5000/ns-init"
-    restart: never
     environment:
       - NSIP=${NSIP1}
       - SNIP=${SNIP1}
@@ -53,7 +51,6 @@ services:
 
   ns-init-3:
     image: "registry.americasreadiness.com:5000/ns-init"
-    restart: never
     environment:
       - NSIP=${NSIP2}
       - SNIP=${SNIP2}
@@ -78,7 +75,6 @@ services:
 
   ns-init-4:
     image: "registry.americasreadiness.com:5000/ns-init"
-    restart: never
     environment:
       - NSIP=${NSIP2}
       - SNIP=${SNIP2}
