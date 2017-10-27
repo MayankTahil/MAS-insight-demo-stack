@@ -66,7 +66,7 @@ services:
       - VSERVER=${SSL_APP1_NS2}
       - VSERVER1=${HTTP_APP1_NS2}
       - VSERVER2=${HTTP_APP2_NS2}
-      - HOSTNAME=${NS1}
+      - HOSTNAME=${NS2}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_3}
       - SERVICE1=srvc_backend-http-webapp-3
@@ -92,7 +92,7 @@ services:
       - VSERVER=${SSL_APP2_NS2}
       - VSERVER1=${HTTP_APP3_NS2}
       - VSERVER2=${HTTP_APP4_NS2}
-      - HOSTNAME=${NS1}
+      - HOSTNAME=${NS2}
       - DNS=${DNS}
       - DOCKERHOST=${WEBAPP_4}
       - SERVICE1=srvc_backend-http-webapp-4
