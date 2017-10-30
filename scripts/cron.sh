@@ -1,7 +1,10 @@
 #!/bin/bash 
 
-cd /MASaaS
+source /MASaaS/env-input.env
+docker rm -f $(docker ps -aq) 
+service docker restart
 
+cd /MASaaS
 # Tear down the stack
 docker-compose -f mas-insight-stack.yaml down 
 
